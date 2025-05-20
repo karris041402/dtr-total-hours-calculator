@@ -1,0 +1,397 @@
+input {
+  text-transform: uppercase;
+}
+
+input::placeholder {
+  text-transform: none; /* o lowercase kung gusto mo */
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background: linear-gradient(185deg, #ffcdd2, #fff);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333;
+}
+
+.header-name {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(185deg, white, #ffcdd2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 5px 0;
+  font-weight: normal;
+}
+
+.header-nav {
+  background: #ffcdd2;
+  padding: 10px 0;
+}
+
+.header-nav nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  background: whitesmoke;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+nav a:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.nav-active {
+  background: #f48fb1;
+  color: white;
+}
+
+.container {
+  flex: 1;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.schedule-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input,
+select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.dtr-entries {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 15px;
+  background: #f48fb1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+#addDayScheduleBtn {
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #f06292;
+}
+
+.secondary-btn {
+  background: #9e9e9e;
+}
+
+.secondary-btn:hover {
+  background: #757575;
+}
+
+.results {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.results p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.total-hours {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e91e63;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #757575;
+  font-style: italic;
+}
+
+/* Toggle content */
+#scheduleContent,
+#calculatorContent,
+#viewSAContent,
+#calendarContent {
+  display: none;
+}
+
+.active-content {
+  display: block !important;
+}
+
+/* Day Schedule */
+.day-schedule {
+  background: #f0f0f0;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.day-schedule-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Search */
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Calendar */
+.calendar {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  background: #f48fb1;
+  color: white;
+  border-radius: 5px 5px 0 0;
+}
+
+.month-header h3 {
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.month-nav {
+  padding: 5px 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  border: 1px solid #ddd;
+  border-radius: 0 0 5px 5px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  padding: 10px;
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+.calendar-day {
+  min-height: 80px;
+  padding: 5px;
+  border: 1px solid #eee;
+  text-align: right;
+  position: relative;
+}
+
+.calendar-day.other-month {
+  background: #f9f9f9;
+  color: #aaa;
+}
+
+.calendar-day.today {
+  background: #e8f5e9;
+}
+
+.calendar-day .date {
+  margin-bottom: 5px;
+}
+
+.event {
+  font-size: 12px;
+  padding: 2px 5px;
+  margin-bottom: 2px;
+  background: #f48fb1;
+  color: white;
+  border-radius: 3px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .header-nav nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .schedule-form {
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .calendar-day-header:nth-child(n + 4) {
+    display: none;
+  }
+
+  .calendar-day:nth-child(n + 22) {
+    display: none;
+  }
+}
+
+.sa-select-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#saSearchInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#saDropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 1000;
+  display: none;
+}
+
+.sa-option {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.sa-option:hover {
+  background-color: #f5f5f5;
+}

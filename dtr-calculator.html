@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced DTR Total Hours Calculator</title>
+    <link rel="stylesheet" href="dtr-calculator.css" />
+  </head>
+  <body>
+    <div class="header-name">
+      <h1>HUMAN RESOURCES MANAGEMENT</h1>
+      <h2>DTR Total Hours Calculator</h2>
+    </div>
+
+    <div class="header-nav">
+      <nav>
+        <ul>
+          <li>
+            <a href="#" id="scheduleBtn" class="nav-active">SA Schedule</a>
+          </li>
+          <li><a href="#" id="calculatorBtn">Total Hours Calculator</a></li>
+          <li><a href="#" id="viewSABtn">View SA Information</a></li>
+          <li><a href="#" id="calendarBtn">Calendar</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div id="scheduleContent" class="active-content">
+        <h3>Student Assistant Schedule Setup</h3>
+        <div class="schedule-section">
+          <form id="scheduleForm" class="schedule-form">
+            <div class="form-group">
+              <label for="saFirstName">First Name:</label>
+              <input
+                type="text"
+                id="saFirstName"
+                placeholder="Enter first name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="saLastName">Last Name:</label>
+              <input
+                type="text"
+                id="saLastName"
+                placeholder="Enter last name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="saID">ID Number:</label>
+              <input type="text" id="saID" placeholder="Enter ID" />
+            </div>
+          </form>
+        </div>
+
+        <div class="schedule-section">
+          <h4>Weekly Schedule</h4>
+          <p class="info-text">
+            Add your work schedule for each day of the week
+          </p>
+
+          <div class="day-schedule">
+            <div class="form-group">
+              <label for="scheduleDay">Day:</label>
+              <select id="scheduleDay">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="scheduleStartTime">Start Time:</label>
+              <input type="time" id="scheduleStartTime" value="08:00" />
+            </div>
+            <div class="form-group">
+              <label for="scheduleEndTime">End Time:</label>
+              <input type="time" id="scheduleEndTime" value="17:00" />
+            </div>
+            <div class="form-group">
+              <button type="button" id="addDayScheduleBtn">
+                Add Day Schedule
+              </button>
+            </div>
+          </div>
+
+          <div id="weeklySummary">
+            <h4>Current Weekly Schedule</h4>
+            <table id="scheduleTable">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Hours</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleTableBody">
+                <tr>
+                  <td colspan="5" class="info-text">
+                    No schedule saved yet. Please add days above.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="day-schedule-controls">
+              <button type="button" id="saveSAInfoBtn">
+                Save SA Information
+              </button>
+              <button
+                type="button"
+                id="goToCalculatorBtn"
+                class="secondary-btn"
+              >
+                Go to Calculator
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="calculatorContent">
+        <h3>Daily Time Record Calculator</h3>
+
+        <div class="schedule-section">
+          <h4>Select Student Assistant</h4>
+          <div class="sa-select-container">
+            <input
+              type="text"
+              id="saSearchInput"
+              placeholder="Search by last name..."
+            />
+            <div id="saDropdown"></div>
+          </div>
+          <div id="selectedSAInfo"></div>
+        </div>
+
+        <div class="dtr-entry-form">
+          <h4>Add Time Record</h4>
+          <form id="dtrForm" class="schedule-form">
+            <div class="form-group">
+              <label for="dtrDate">Date:</label>
+              <input type="date" id="dtrDate" required />
+            </div>
+            <div class="form-group">
+              <label for="timeIn">Time In:</label>
+              <input type="time" id="timeIn" required />
+            </div>
+            <div class="form-group">
+              <label for="timeOut">Time Out:</label>
+              <input type="time" id="timeOut" required />
+            </div>
+            <div class="form-group">
+              <button type="button" id="addEntryBtn">Add Entry</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="dtr-entries">
+          <h4>Time Records</h4>
+          <table id="entriesTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Hours Worked</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="entriesBody">
+              <!-- Entries will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="controls">
+          <button type="button" id="calculateBtn">Calculate Total Hours</button>
+          <button type="button" id="resetBtn" class="secondary-btn">
+            Reset All
+          </button>
+        </div>
+
+        <div class="results" id="resultsSection">
+          <h4>Results</h4>
+          <p>Working days: <span id="workingDays">0</span></p>
+          <p>Raw total hours: <span id="rawHours">0</span></p>
+          <p>
+            Break time deductions: <span id="breakDeductions">0</span> hours
+          </p>
+          <p class="total-hours">
+            Final total hours: <span id="totalHours">0</span>
+          </p>
+          <p class="info-text">
+            Note: 1 hour break is deducted for days with 7+ hours worked.
+            Maximum of 100 hours per month.
+          </p>
+        </div>
+      </div>
+
+      <!-- View SA Information Content -->
+      <div id="viewSAContent">
+        <h3>Student Assistant Information</h3>
+
+        <div class="search-container">
+          <input
+            type="text"
+            id="saSearch"
+            placeholder="Search by last name..."
+          />
+          <button type="button" id="searchBtn">Search</button>
+        </div>
+
+        <div id="saSearchResults">
+          <table id="saTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Weekly Schedule</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="saTableBody">
+              <!-- SA data will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="saDetails" class="results">
+          <h4>Student Assistant Details</h4>
+          <div id="saDetailsContent">
+            <p class="info-text">Select a student assistant to view details.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar Content -->
+      <div id="calendarContent">
+        <h3>Schedule Calendar</h3>
+
+        <div class="calendar">
+          <div class="month-header">
+            <button class="month-nav" id="prevMonth">&lt;</button>
+            <h3 id="currentMonth">May 2025</h3>
+            <button class="month-nav" id="nextMonth">&gt;</button>
+          </div>
+
+          <div class="calendar-grid" id="calendarGrid">
+            <!-- Calendar will be generated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="dtr-calculator.js"></script>
+  </body>
+</html>
